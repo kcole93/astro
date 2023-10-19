@@ -153,7 +153,6 @@ export async function handleRoute({
 	manifest,
 }: HandleRoute): Promise<void> {
 	const env = pipeline.getEnvironment();
-	const settings = pipeline.getSettings();
 	const config = pipeline.getConfig();
 	const moduleLoader = pipeline.getModuleLoader();
 	const { logger } = env;
@@ -190,7 +189,7 @@ export async function handleRoute({
 		request,
 		route,
 	};
-	const middleware = await loadMiddleware(moduleLoader, settings.config.srcDir);
+	const middleware = await loadMiddleware(moduleLoader);
 	if (middleware) {
 		options.middleware = middleware;
 	}
